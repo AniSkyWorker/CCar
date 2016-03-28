@@ -1,4 +1,5 @@
 #pragma once
+
 class CCar
 {
 	enum MovementType	
@@ -10,17 +11,20 @@ class CCar
 
 public:
 	CCar();
-	~CCar();
 
 	bool TurnOnEngine();
 	bool TurnOffEngine();
 	bool SetGear(int gear);
 	bool SetSpeed(unsigned speed);
 
+	void Info();
+
 private:
-	bool engineCondition;
-	MovementType movement;
-	unsigned currentSpeed;
-	int currentGear;
+	MovementType GetMovementType();
+
+	bool m_engineCondition;
+	MovementType m_movement;
+	unsigned m_currentSpeed;
+	int m_currentGear;
 };
 

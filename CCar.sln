@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CCar", "CCar\CCar.vcxproj", "{7EEDC171-1B13-4C70-A03B-ABF54D2083D4}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CarTests", "CarTests\CarTests.vcxproj", "{23BE8FEF-3ED8-4550-905E-6DA78BCB05B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{7EEDC171-1B13-4C70-A03B-ABF54D2083D4}.Release|x64.Build.0 = Release|x64
 		{7EEDC171-1B13-4C70-A03B-ABF54D2083D4}.Release|x86.ActiveCfg = Release|Win32
 		{7EEDC171-1B13-4C70-A03B-ABF54D2083D4}.Release|x86.Build.0 = Release|Win32
+		{23BE8FEF-3ED8-4550-905E-6DA78BCB05B2}.Debug|x64.ActiveCfg = Debug|x64
+		{23BE8FEF-3ED8-4550-905E-6DA78BCB05B2}.Debug|x64.Build.0 = Debug|x64
+		{23BE8FEF-3ED8-4550-905E-6DA78BCB05B2}.Debug|x86.ActiveCfg = Debug|Win32
+		{23BE8FEF-3ED8-4550-905E-6DA78BCB05B2}.Debug|x86.Build.0 = Debug|Win32
+		{23BE8FEF-3ED8-4550-905E-6DA78BCB05B2}.Release|x64.ActiveCfg = Release|x64
+		{23BE8FEF-3ED8-4550-905E-6DA78BCB05B2}.Release|x64.Build.0 = Release|x64
+		{23BE8FEF-3ED8-4550-905E-6DA78BCB05B2}.Release|x86.ActiveCfg = Release|Win32
+		{23BE8FEF-3ED8-4550-905E-6DA78BCB05B2}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
