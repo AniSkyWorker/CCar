@@ -33,7 +33,7 @@ int main()
 		}
 		else if (string == "Info")
 		{
-			car.Info();
+			car.PrintCurrentState();
 		}
 		else
 		{

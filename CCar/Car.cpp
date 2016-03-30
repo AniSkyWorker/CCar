@@ -5,45 +5,44 @@ CCar::CCar()
 	:m_currentGear(0)
 	,m_currentSpeed(0)
 	,m_engineCondition(false)
-	,m_movement(MovementType::stay)
 {
 }
-
 
 bool CCar::TurnOnEngine()
 {
 	if (m_engineCondition)
 	{
-		return false;
 		std::cout << "Engine have already turned on!" << std::endl;
-	}
-	else
-	{
-		m_engineCondition = true;
+		return false;
 	}
 
+	m_engineCondition = true;
 	return true;
 }
 
 bool CCar::TurnOffEngine()
 {
-	if (m_engineCondition && m_movement == MovementType::stay && m_currentGear == 0)
+	if (m_engineCondition && GetMovementType() == MovementType::STAY && m_currentGear == 0)
 	{
 		m_engineCondition = false;
+		return true;
 	}
 	else
 	{
-		return false;
 		std::cout << "Engine (have already turned off) (car speed > 0 or/and transmisson not on zero gear" << std::endl;
+		return false;
 	}
-
-	return true;
 }
 
 bool CCar::SetGear(int gear)
 {
+	if (!m_engineCondition)
+	{
+		std::cout << "Engine turned off!" << std::endl;
+		return false;
+	}
 
-	m_movement = GetMovementType();
+	MovementType movement = GetMovementType();
 
 	switch (gear)
 	{
@@ -56,31 +55,31 @@ bool CCar::SetGear(int gear)
 	case 0:
 		break;
 	case 1:
-		if (!((m_currentGear < 1 && m_movement == MovementType::stay) || (m_movement == MovementType::foward && m_currentSpeed < 30)))
+		if (!((m_currentGear < 1 && movement == MovementType::STAY) || (movement == MovementType::FORWARD && m_currentSpeed < 30)))
 		{
 			return false;
 		}
 		break;
 	case 2:
-		if (!(m_movement == MovementType::foward && m_currentSpeed >= 20 && m_currentSpeed <= 50))
+		if (!(movement == MovementType::FORWARD && m_currentSpeed >= 20 && m_currentSpeed <= 50))
 		{
 			return false;
 		}
 		break;
 	case 3:
-		if (!(m_movement == MovementType::foward && m_currentSpeed >= 30 && m_currentSpeed <= 60))
+		if (!(movement == MovementType::FORWARD && m_currentSpeed >= 30 && m_currentSpeed <= 60))
 		{
 			return false;
 		}
 		break;
 	case 4:
-		if (!(m_movement == MovementType::foward && m_currentSpeed >= 40 && m_currentSpeed <= 90))
+		if (!(movement == MovementType::FORWARD && m_currentSpeed >= 40 && m_currentSpeed <= 90))
 		{
 			return false;
 		}
 		break;
 	case 5:
-		if (!(m_movement == MovementType::foward && m_currentSpeed >= 50))
+		if (!(movement == MovementType::FORWARD && m_currentSpeed >= 50))
 		{
 			return false;
 		}
@@ -98,8 +97,8 @@ bool CCar::SetSpeed(unsigned speed)
 {
 	if (!m_engineCondition)
 	{
-		return false;
 		std::cout << "Engine turned off!" << std::endl;
+		return false;
 	}
 
 	switch (m_currentGear)
@@ -152,26 +151,25 @@ bool CCar::SetSpeed(unsigned speed)
 	}
 
 	m_currentSpeed = speed;
-	m_movement = GetMovementType();
 	return true;
 }
 
-void CCar::Info()
+void CCar::PrintCurrentState() const
 {
 	std::string workLine = m_engineCondition ? "Engine is turned on;" : "Engine is turned off;";
 	std::cout << workLine << std::endl
 		<< m_currentSpeed << " -speed of car;" << std::endl
 		<< m_currentGear << " -gear of transmission;" << std::endl;
 
-	switch (m_movement)
+	switch (GetMovementType())
 	{
-	case MovementType::stay:
+	case MovementType::STAY:
 		workLine = "Car stay at now!;";
 		break;
-	case MovementType::foward:
+	case MovementType::FORWARD:
 		workLine = "Car move foward at now!;";
 		break;
-	case MovementType::back:
+	case MovementType::BACK:
 		workLine = "Car move back at now!;";
 		break;
 	}
@@ -180,20 +178,20 @@ void CCar::Info()
 
 }
 
-CCar::MovementType CCar::GetMovementType()
+CCar::MovementType CCar::GetMovementType() const
 {
 	if (m_currentGear > 0 && m_currentSpeed > 0)
 	{
-		return MovementType::foward;
+		return MovementType::FORWARD;
 	}
 	else if (m_currentGear < 0 && m_currentSpeed > 0)
 	{
-		return MovementType::back;
+		return MovementType::BACK;
 	}
-	else if(m_currentSpeed == 0)
+	else if (m_currentSpeed == 0)
 	{
-		return MovementType::stay;
+		return MovementType::STAY;
 	}
-		
-	return m_movement;
+
+	return MovementType::NONE;
 }

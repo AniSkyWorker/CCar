@@ -2,13 +2,6 @@
 
 class CCar
 {
-	enum MovementType	
-	{
-		stay,
-		foward,
-		back
-	};
-
 public:
 	CCar();
 
@@ -17,13 +10,20 @@ public:
 	bool SetGear(int gear);
 	bool SetSpeed(unsigned speed);
 
-	void Info();
+	void PrintCurrentState() const;
 
 private:
-	MovementType GetMovementType();
+	enum MovementType
+	{
+		STAY,
+		FORWARD,
+		BACK,
+		NONE
+	};
+
+	MovementType GetMovementType() const;
 
 	bool m_engineCondition;
-	MovementType m_movement;
 	unsigned m_currentSpeed;
 	int m_currentGear;
 };
