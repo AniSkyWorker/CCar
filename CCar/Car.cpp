@@ -178,6 +178,21 @@ void CCar::PrintCurrentState() const
 
 }
 
+bool CCar::IsEngineOn() const
+{
+	return m_engineCondition;
+}
+
+int CCar::GetGear() const
+{
+	return m_currentGear;
+}
+
+unsigned CCar::GetSpeed() const
+{
+	return m_currentSpeed;
+}
+
 CCar::MovementType CCar::GetMovementType() const
 {
 	if (m_currentGear > 0 && m_currentSpeed > 0)

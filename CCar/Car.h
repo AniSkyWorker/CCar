@@ -12,7 +12,10 @@ public:
 
 	void PrintCurrentState() const;
 
-private:
+	bool IsEngineOn() const;
+	int GetGear() const;
+	unsigned GetSpeed() const;
+
 	enum MovementType
 	{
 		STAY,
@@ -22,6 +25,9 @@ private:
 	};
 
 	MovementType GetMovementType() const;
+
+private:
+	
 
 	bool m_engineCondition;
 	unsigned m_currentSpeed;
