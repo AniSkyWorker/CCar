@@ -29,12 +29,13 @@ struct Car_
 		BOOST_CHECK_EQUAL(car.GetMovementType(), clone.GetMovementType());
 	}
 
-	void CheckTransmissionSpeedRange(const int & gear, const int & minSpeed, const int & maxSpeed, const int & currentSpeed)
+	void CheckTransmissionSpeedRange(int gear, int minSpeed, int maxSpeed, int currentSpeed)
 	{
 		ExpectOperationSucceeds([=] { return car.SetGear(gear);}, gear, currentSpeed);
 		ExpectOperationFails([=] { return car.SetSpeed(minSpeed - 1);});
 		ExpectOperationFails([=] { return car.SetSpeed(maxSpeed + 1);});
 		ExpectOperationSucceeds([=] { return car.SetSpeed(minSpeed);}, gear, minSpeed);
+		ExpectOperationSucceeds([=] { return car.SetSpeed((minSpeed + maxSpeed) / 2);}, gear, (minSpeed + maxSpeed)/ 2);
 		ExpectOperationSucceeds([=] { return car.SetSpeed(maxSpeed);}, gear, maxSpeed);
 	}
 };
@@ -86,7 +87,7 @@ BOOST_FIXTURE_TEST_SUITE(Car, Car_)
 
 			ExpectOperationSucceeds([=] { return car.SetGear(0);}, 0, 30);
 			ExpectOperationFails([=] { return car.SetSpeed(-1);});
-			ExpectOperationFails([=] { return car.SetSpeed(31);});
+			ExpectOperationFails([=] { return car.SetSpeed(31);}); 
 			ExpectOperationSucceeds([=] { return car.SetSpeed(26);}, 0, 26);
 		}
 
